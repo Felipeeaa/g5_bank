@@ -14,8 +14,8 @@ class g5_bank(models.Model):
     description = fields.Text()
     
     #Many2One    
-    movement_id = fields.Many2one('g5_bank.account',
-        ondelete='set null', string="Movement")
+    account_id = fields.Many2one('g5_bank.account',
+        ondelete='set null', string="Account")
 #
 #
 #     @api.depends('value')
