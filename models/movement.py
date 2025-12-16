@@ -1,6 +1,25 @@
-# To change this license header, choose License Headers in Project Properties.
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
+# -*- coding: utf-8 -*-
 
-if __name__ == "__main__":
-    print "Hello World"
+from odoo import models, fields, api
+
+
+class g5_bank(models.Model):
+    _name = 'g5_bank.movement'
+    _description = 'Movements'
+    
+
+    timesStamp = fields.Char()
+    amount = fields.Integer()
+    balance = fields.Float(compute="_value_pc", store=True)
+    description = fields.Text()
+    
+#Many2One    
+    esponsible_id = fields.Many2one('res.users',
+        ondelete='set null', string="Responsible"
+
+        )
+#
+#     @api.depends('value')
+#     def _value_pc(self):
+#         for record in self:
+#             record.value2 = float(record.value) / 100
