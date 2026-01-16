@@ -3,7 +3,7 @@
 from odoo import models, fields, api
 
 
-class g5_bank(models.Model):
+class Movement(models.Model):
     _name = 'g5_bank.movement'
     _description = 'Movements'
     
