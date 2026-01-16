@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <record model="g5_bank.customer" id="customer">
+           <field name="name">Customers</field>
+            <field name="description">All information about customers</field>
+        </record>
+        <menuitem id="customer_menu_id" 
+                  name="Customers" 
+                  parent="movement_menu_id" 
+                  action="customer"/>
+    </data>
+</odoo>
