@@ -10,3 +10,4 @@ class Customer(models.Model):
 
      account_ids = fields.Many2Many("g5_bank.account", string="Accounts")
      
+     
