@@ -2,5 +2,5 @@
 
 from . import models
 
-from . import customer,account,movement
+from . import customer, account, movement
 

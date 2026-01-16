@@ -32,7 +32,10 @@
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'views/MyAccounts',
+        'views/MyAccounts.xml',
+        'views/movementMenu.xml',
+        'views/customerMenu.xml',
+        
     ],
     # only loaded in demonstration mode
     'demo': [
