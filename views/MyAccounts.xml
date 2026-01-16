@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<odoo>
+    <data>
+        <menuitem id="bank_main_menu"
+                  name="Bank"/>
+        <menuitem id="main_myaccounts_menu"
+                      name="My Accounts"
+                      parent="bank_main_menu"/>
+        <record model="g5_bank.account" id="account">
+            <field name="name">Account </field>
+            <field name="description"> My Account informations</field>
+                            
+    </data>
+    
+</odoo>

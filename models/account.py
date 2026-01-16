@@ -8,11 +8,9 @@ class Account(models.Model):
      _description = 'Account'
 
      name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
+     value = fields.Integer()
+     value2 = fields.Float(compute="_value_pc", store=True)
+     description = fields.Text()
+     customer_ids = fields.Many2Many("g5_bank.customer", string = "Customer" )
+     movement_ids = fields.One2Many("g5_bank.movement", "account_id", string = "Movements")
+
