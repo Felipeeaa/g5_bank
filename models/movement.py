@@ -15,18 +15,6 @@ class Movement(models.Model):
     balance = fields.Float(compute="_value_pc", store=True)
     description = fields.Text()
     
-    #Many2One    
-
-    movement_id = fields.One2many('g5_bank.account',
-        ondelete='set null', string="Movement")
-
+    #Many2One
     account_id = fields.Many2one('g5_bank.account',
         ondelete='set null', string="Account")
-#
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-
-#             record.value2 = float(record.value) / 100
-
