@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="session_form_view">
+            <field name="name">session.form</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <form string="Session Form">
+                    <sheet>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="amount"/>
+                            <field name="type"/>
+                            <field name="balance"/>
+                        </group>
+                    </sheet>
+                </form>
+                </field>
+            </record>
+        <record model="ir.actions.act_window"
+                id="movement">
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="movement_menu_id" 
+                  name="Movements" 
+                  parent="main_myaccounts_menu"
+                  action="movement"/>
+            
+        
+    </data>
+</odoo>

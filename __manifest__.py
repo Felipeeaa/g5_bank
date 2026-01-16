@@ -7,6 +7,7 @@
         subtitle on modules listing or apps.openerp.com""",
 
     'description': """
+
         Module in charge of creating, reading, updating and deleting
 	the introduced customers, accounts and movements of a bank.
 	Admin users having the privileges of managing all data, while
@@ -15,6 +16,7 @@
 
     'author': "FMD_Bank",
     'website':"https://site.educa.madrid.org/ies.sanjuandelacruz.pozuelodealarcon/ ",
+
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
