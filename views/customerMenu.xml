@@ -2,13 +2,17 @@
 
 <odoo>
     <data>
-        <record model="g5_bank.customer" id="customer">
-           <field name="name">Customers</field>
-            <field name="description">All information about customers</field>
+        <record model="ir.actions.act_window" id="g5_customer_action">
+          <field name="name">Customers</field>    
+          <field name="res_model">res.users</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">
+                 tree,form
+          </field>
         </record>
         <menuitem id="customer_menu_id" 
                   name="Customers" 
-                  parent="movement_menu_id" 
-                  action="customer"/>
+                  parent="bank_main_menu" 
+                  action="g5_customer_action"/>
     </data>
 </odoo>

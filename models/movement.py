@@ -16,7 +16,7 @@ class Movement(models.Model):
     description = fields.Text()
     
     #Many2One    
-    account_id = fields.Many2one('g5_bank.account',
+    g5_account_id = fields.Many2one('g5_bank.account',
         ondelete='set null', string="Account")
 #
 #

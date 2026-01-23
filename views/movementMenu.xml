@@ -2,31 +2,32 @@
 
 <odoo>
     <data>
-        <record model="ir.ui.view" id="session_form_view">
-            <field name="name">session.form</field>
-            <field name="model">openacademy.session</field>
+        <record model="ir.ui.view" id="movements_form_view">
+            <field name="name">movements.form</field>
+            <field name="model">g5_bank.movement</field>
             <field name="arch" type="xml">
                 <form string="Session Form">
                     <sheet>
                         <group>
-                            <field name="start_date"/>
+                            <field name="timesStamp"/>
                             <field name="amount"/>
-                            <field name="type"/>
+                            <field name="description"/>
                             <field name="balance"/>
                         </group>
                     </sheet>
                 </form>
                 </field>
             </record>
-        <record model="ir.actions.act_window"
-                id="movement">
+        <record model="ir.actions.act_window" id="g5_movement_action">
+            <field name="name">Movements</field>    
+            <field name="res_model">g5_bank.movement</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
         <menuitem id="movement_menu_id" 
                   name="Movements" 
-                  parent="main_myaccounts_menu"
-                  action="movement"/>
+                  parent="bank_main_menu"
+                  action="g5_movement_action"/>
             
         
     </data>

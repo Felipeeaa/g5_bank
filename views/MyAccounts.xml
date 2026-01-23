@@ -8,15 +8,20 @@ and open the template in the editor.
 
 <odoo>
     <data>
+        <record model="ir.actions.act_window" id="g5_accounts_action">
+            <field name="name">Accounts</field>    
+            <field name="res_model">g5_bank.account</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
         <menuitem id="bank_main_menu"
                   name="Bank"/>
-        <menuitem id="main_myaccounts_menu"
+        <!--menuitem id="main_myaccounts_menu"
                       name="My Accounts"
-                      parent="bank_main_menu"/>
-        <record model="g5_bank.account" id="account">
-            <field name="name">Account </field>
-            <field name="description"> My Account informations</field>
-                            
+                      parent="bank_main_menu"
+                      action ="account"/-->
+                           
     </data>
     
 </odoo>
