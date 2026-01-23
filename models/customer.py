@@ -5,8 +5,8 @@ from odoo import models, fields, api
 
 class Customer(models.Model):
      _description = 'Customer'
-     _inherit = "res.users"
+     _inherit = 'res.users'
 
-     g5_account_ids = fields.Many2many("g5_bank.account", string="Accounts")
+     g5_account_ids = fields.Many2many("g5_bank.account", String = "Account")
      
      

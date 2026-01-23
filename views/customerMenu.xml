@@ -5,7 +5,6 @@
         <record model="ir.actions.act_window" id="g5_customer_action">
           <field name="name">Customers</field>    
           <field name="res_model">res.users</field>
-          <field name="view_type">form</field>
           <field name="view_mode">
                  tree,form
           </field>

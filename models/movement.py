@@ -16,8 +16,7 @@ class Movement(models.Model):
     description = fields.Text()
     
     #Many2One    
-    g5_account_id = fields.Many2one('g5_bank.account',
-        ondelete='set null', string="Account")
+    g5_account_id = fields.Many2one('g5_bank.account', string="Account")
 #
 #
 #     @api.depends('value')

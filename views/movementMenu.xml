@@ -21,7 +21,6 @@
         <record model="ir.actions.act_window" id="g5_movement_action">
             <field name="name">Movements</field>    
             <field name="res_model">g5_bank.movement</field>
-            <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
         <menuitem id="movement_menu_id" 
