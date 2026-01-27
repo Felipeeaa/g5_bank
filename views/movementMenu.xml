@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <odoo>
     <data>
-        <record model="ir.ui.view" id="g5_bank_movement_view_form">
-            <field name="name">g5_bank.movement.form</field>
+        <!--
+        <record model="ir.ui.view" id="movements_form_view">
+            <field name="name">movements.form</field>
             <field name="model">g5_bank.movement</field>
             <field name="arch" type="xml">
-                <form string="Movement">
+                <form string="Session Form">
                     <sheet>
                         <group>
                             <field name="timesStamp"/>
@@ -15,19 +17,19 @@
                         </group>
                     </sheet>
                 </form>
-            </field>
-        </record>
-
-        <record model="ir.actions.act_window" id="g5_bank_movement_action">
-            <field name="name">Movements</field>
+                </field>
+            </record>
+        -->   
+        <record model="ir.actions.act_window" id="g5_movement_action">
+            <field name="name">Movements</field>    
             <field name="res_model">g5_bank.movement</field>
             <field name="view_mode">tree,form</field>
         </record>
-
-        <menuitem id="movement_menu_id"
-                  name="Movements"
+        <menuitem id="movement_menu_id" 
+                  name="Movements" 
                   parent="bank_main_menu"
-                  action="g5_bank_movement_action"/>
-
+                  action="g5_movement_action"/>
+            
+        
     </data>
 </odoo>
