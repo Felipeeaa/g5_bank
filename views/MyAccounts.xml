@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
 
 <odoo>
     <data>
+        <record model="ir.ui.view" id="view_g5_account_tree">
+            <field name="name">g5AccountTreeView</field>
+            <field name="model">g5_bank.account</field>
+            <field name="arch" type="xml">
+            <tree string="account">
+                <field name="id"/>
+                <field name="description"/>
+                <field name="balance"/>
+                <field name="creditLine"/>
+                <field name="beginBalance"/>
+                <field name="beginBalanceTimestamp"/>
+                <field name="typeAccount"/>
+            </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_g5_account_form">
+            <field name="name">g5AccountFormView</field>
+            <field name="model">g5_bank.account</field>
+            <field name="arch" type="xml">
+            <form>
+                <group colspan="4">
+                    <group colspan="2" col="2">
+                        <field name="id"/>
+                        <field name="description"/>
+                        <field name="balance"/>
+                    </group>
+                    <group colspan="2" col="2">
+                        <field name="creditLine"/>
+                        <field name="beginBalance"/>
+                        <field name="beginBalanceTimesTamp"/>
+                        <field name="type"/>
+                    </group>
+                </group>
+            </form>
+        </record>
+        
         <record model="ir.actions.act_window" id="g5_accounts_action">
             <field name="name">Accounts</field>    
             <field name="res_model">g5_bank.account</field>
