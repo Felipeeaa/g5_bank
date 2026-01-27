@@ -3,11 +3,9 @@
 <odoo>
     <data>
         <record model="ir.actions.act_window" id="g5_customer_action">
-          <field name="name">Customers</field>    
-          <field name="res_model">res.users</field>
-          <field name="view_mode">
-                 tree,form
-          </field>
+            <field name="name">Customers</field>    
+            <field name="res_model">res.users</field>
+            <field name="view_mode">tree,form</field>
         </record>
         <menuitem id="customer_menu_id" 
                   name="Customers" 

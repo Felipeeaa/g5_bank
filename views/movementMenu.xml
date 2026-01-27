@@ -2,6 +2,7 @@
 
 <odoo>
     <data>
+        <!--
         <record model="ir.ui.view" id="movements_form_view">
             <field name="name">movements.form</field>
             <field name="model">g5_bank.movement</field>
@@ -18,6 +19,7 @@
                 </form>
                 </field>
             </record>
+        -->   
         <record model="ir.actions.act_window" id="g5_movement_action">
             <field name="name">Movements</field>    
             <field name="res_model">g5_bank.movement</field>

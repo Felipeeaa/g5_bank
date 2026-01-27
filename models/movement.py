@@ -17,11 +17,3 @@ class Movement(models.Model):
     
     #Many2One    
     g5_account_id = fields.Many2one('g5_bank.account', string="Account")
-#
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-
-#             record.value2 = float(record.value) / 100
-
