@@ -27,3 +27,15 @@ class Account(models.Model):
     g5_customer_ids = fields.Many2many('res.users', string='Customer')
     g5_movement_ids = fields.One2many('g5_bank.movement', 'g5_account_id', string='Movements')
 
+
+@api.constrains('typeAccount', 'creditLine')
+def _check_credit_line_consistency(self):
+       for record in self:
+            if record.typeAccount == 'STANDARD' and record.creditLine > 0:
+               raise ValidationError("A 'Standard' account cannot have a credit line. Please change the type to 'Credit' or set the credit line to 0.")
+           
+@api.constrains('balance', 'creditLine')
+def _check_balance_limit(self):
+    for record in self:
+            if record.balance < (-record.creditLine):
+                raise ValidationError(f"The balance cannot be lower than the allowed credit limit (-{record.creditLine}).")

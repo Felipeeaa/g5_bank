@@ -36,8 +36,38 @@
                         <field name="beginBalanceTimestamp"/>
                         <field name="typeAccount"/>
                     </group>
+                    <notebook>
+                        <page string="Movements" name="detalle-movement">
+                             <field name="g5_movement_ids"/>
+                        </page>
+                        <page string="Customer" name="detalle-customer">
+                            <field name="g5_customer_ids"/>
+                        </page>
+                    </notebook>
                 </group>
             </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_g5_account_search">
+            <field name="name">g5AccountSearchView</field>
+            <field name="model">g5_bank.account</field>
+            <field name="arch" type="xml">
+                <search string="Search Accounts">
+                    <field name="name" string="Account Name"/>
+                    <field name="description" string="Description"/>
+                    <field name="typeAccount"/>
+
+                    <filter string="Credit Accounts" name="credit_accounts" domain="[('typeAccount', '=', 'CREDIT')]"/>
+                    <filter string="Standard Accounts" name="standard_accounts" domain="[('typeAccount', '=', 'STANDARD')]"/>
+                    <separator/>
+                    <filter string="Negative Balance" name="negative_balance" domain="[('balance', '&lt;', 0)]"/>
+
+                    <group expand="0" string="Group By">
+                        <filter string="Account Type" name="group_by_type" context="{'group_by': 'typeAccount'}"/>
+                        <filter string="Opening Date" name="group_by_date" context="{'group_by': 'beginBalanceTimestamp'}"/>
+                    </group>
+                </search>
             </field>
         </record>
         
