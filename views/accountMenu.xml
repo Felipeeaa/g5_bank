@@ -26,14 +26,14 @@
             <form>
                 <group colspan="4">
                     <group colspan="2" col="2">
-                        <field name="id"/>
+                        <field name="id" attrs="{'readonly': [('id', '!=', False)]}"/>
                         <field name="description"/>
-                        <field name="balance"/>
+                        <field name="balance" attrs="{'readonly': [('id', '!=', False)]}"/>
                     </group>
                     <group colspan="2" col="2">
                         <field name="creditLine"/>
-                        <field name="beginBalance"/>
-                        <field name="beginBalanceTimestamp"/>
+                        <field name="beginBalance" attrs="{'readonly': [('id', '!=', False)]}"/>
+                        <field name="beginBalanceTimestamp" attrs="{'readonly': [('id', '!=', False)]}"/>
                         <field name="typeAccount"/>
                     </group>
                     <notebook>
