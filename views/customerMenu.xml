@@ -2,6 +2,55 @@
 
 <odoo>
     <data>
+        
+        <record model="ir.ui.view" id="g5_customer_tree_view">
+        <field name="name">g5.customer.tree</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <tree string="Customer">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="city"/>
+                <field name="street"/>
+                <field name="state_id"/>
+                <field name="zip"/>
+                <field name="phone"/>
+            </tree>
+        </field>
+        </record>
+        <record model="ir.ui.view" id="g5_customer_form_view">
+        <field name="name">g5.customer.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <field name="arch" type="xml">
+            <group name="phone_numbers" position="replace">
+                <group>
+                   <group>
+                       <field name="city"/>
+                       <field name="street"/>
+                       <field name="zip"/>
+                   </group>
+                   <group>
+                       <field name="country_id"/>
+                       <field name="state_id"/>
+                       <field name="mobile"/>
+                   </group>
+                     
+                </group>
+                <notebook>
+                    <page string="Accounts" name="detalle-cuentas">
+                        <field name="g5_account_ids"/>
+                    </page>
+                </notebook>
+                
+                
+            </group>
+            
+            
+            
+        </field>
+        </record>
         <record model="ir.actions.act_window" id="g5_customer_action">
             <field name="name">Customers</field>    
             <field name="res_model">res.users</field>
