@@ -30,7 +30,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/MyAccounts.xml',
+        'views/accountMenu.xml',
         'views/movementMenu.xml',
         'views/customerMenu.xml',
         
