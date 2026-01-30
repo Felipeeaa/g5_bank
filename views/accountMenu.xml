@@ -17,7 +17,9 @@
             </tree>
             </field>
         </record>
+        
         <record model="ir.ui.view" id="view_g5_account_form">
+            
             <field name="name">g5AccountFormView</field>
             <field name="model">g5_bank.account</field>
             <field name="arch" type="xml">
@@ -31,11 +33,12 @@
                     <group colspan="2" col="2">
                         <field name="creditLine"/>
                         <field name="beginBalance"/>
-                        <field name="beginBalanceTimesTamp"/>
-                        <field name="type"/>
+                        <field name="beginBalanceTimestamp"/>
+                        <field name="typeAccount"/>
                     </group>
                 </group>
             </form>
+            </field>
         </record>
         
         <record model="ir.actions.act_window" id="g5_accounts_action">
@@ -47,7 +50,7 @@
         <menuitem id="bank_main_menu"
                   name="Bank"/>
         <menuitem id="main_myaccounts_menu"
-                      name="My Accounts"
+                      name="Accounts"
                       parent="bank_main_menu"
                       action ="g5_accounts_action"/>
                            
