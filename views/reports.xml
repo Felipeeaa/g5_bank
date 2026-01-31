@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_account" model="ir.actions.report">
+            <field name="name">Account Detail</field>
+            <field name="model">g5_bank.account</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">g5_bank.report_account_template</field>
+            <field name="report_file">g5_bank.report_account_template</field>
+            <field name="print_report_name">'Account_%s' % (object.name)</field>
+            <field name="binding_model_id" ref="model_g5_bank_account"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_account_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <h2>Bank Account Report</h2>
+                            <p><strong>Account ID:</strong> <span t-field="o.name"/></p>
+                            
+                            <table class="table table-sm table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>Type</th>
+                                        <th>Current Balance</th>
+                                        <th>Credit Line</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span t-field="o.description"/></td>
+                                        <td><span t-field="o.typeAccount"/></td>
+                                        <td><span t-field="o.balance" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                        <td><span t-field="o.creditLine" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h3>Associated Movements</h3>
+                            <table class="table table-striped table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Date/Time</th>
+                                        <th>Description</th>
+                                        <th class="text-right">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.g5_movement_ids" t-as="mov">
+                                        <td><span t-field="mov.timesStamp"/></td>
+                                        <td><span t-field="mov.description"/></td>
+                                        <td class="text-right"><span t-field="mov.amount"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_report_customer" model="ir.actions.report">
+            <field name="name">Customer Profile</field>
+            <field name="model">res.users</field> 
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">g5_bank.report_customer_template</field>
+            <field name="report_file">g5_bank.report_customer_template</field>
+            <field name="print_report_name">'Customer_%s' % (object.name)</field>
+            <field name="binding_model_id" ref="base.model_res_users"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_customer_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="user">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <h2>Customer Profile</h2>
+                            <div class="row mt32 mb32">
+                                <div class="col-6">
+                                    <strong>Name:</strong> <span t-field="user.name"/><br/>
+                                    <strong>Email:</strong> <span t-field="user.email"/><br/>
+                                </div>
+                                <div class="col-6">
+                                    <strong>Address:</strong><br/>
+                                    <span t-field="user.street"/><br/>
+                                    <span t-field="user.city"/>, <span t-field="user.zip"/>
+                                </div>
+                            </div>
+
+                            <h3>Bank Accounts</h3>
+                            <t if="not user.g5_account_ids">
+                                <p><em>This customer has no associated accounts.</em></p>
+                            </t>
+                            <t if="user.g5_account_ids">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Account ID</th>
+                                            <th>Description</th>
+                                            <th>Type</th>
+                                            <th>Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="user.g5_account_ids" t-as="acc">
+                                            <td><span t-field="acc.name"/></td>
+                                            <td><span t-field="acc.description"/></td>
+                                            <td><span t-field="acc.typeAccount"/></td>
+                                            <td><span t-field="acc.balance" t-options='{"widget": "monetary", "display_currency": acc.currency_id}'/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_report_movement" model="ir.actions.report">
+            <field name="name">Movement Receipt</field>
+            <field name="model">g5_bank.movement</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">g5_bank.report_movement_template</field>
+            <field name="report_file">g5_bank.report_movement_template</field>
+            <field name="print_report_name">'Movement_%s' % (object.id)</field>
+            <field name="binding_model_id" ref="model_g5_bank_movement"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_movement_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="mov">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="text-center">
+                                <h2>Transaction Receipt</h2>
+                                <h4>G5 Bank</h4>
+                            </div>
+                            <hr/>
+                            
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Date/Time:</strong> <span t-field="mov.timesStamp"/>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <strong>Ref. Movement:</strong> <span t-field="mov.id"/>
+                                </div>
+                            </div>
+                            
+                            <br/><br/>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title text-center">Amount</h3>
+                                    <h1 class="text-center display-4">
+                                        <span t-field="mov.amount"/> €
+                                    </h1>
+                                    <p class="card-text text-center text-muted">
+                                        <span t-field="mov.description"/>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <br/>
+                            <table class="table mt-4">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Source Account:</strong></td>
+                                        <td><span t-field="mov.g5_account_id.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Account Holder(s):</strong></td>
+                                        <td>
+                                            <t t-foreach="mov.g5_account_id.g5_customer_ids" t-as="cust">
+                                                <span t-field="cust.name"/>, 
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <div class="footer text-center mt-5">
+                                <small>Document generated electronically by G5 Bank.</small>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
