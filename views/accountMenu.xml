@@ -31,7 +31,8 @@
                         <field name="balance" attrs="{'readonly': [('id', '!=', False)]}"/>
                     </group>
                     <group colspan="2" col="2">
-                        <field name="creditLine"/>
+                        <field name="creditLine" 
+                                   attrs="{'invisible': [('typeAccount', '=', 'STANDARD')], 'required': [('typeAccount', '=', 'CREDIT')]}"/>
                         <field name="beginBalance" attrs="{'readonly': [('id', '!=', False)]}"/>
                         <field name="beginBalanceTimestamp" attrs="{'readonly': [('id', '!=', False)]}"/>
                         <field name="typeAccount"/>
