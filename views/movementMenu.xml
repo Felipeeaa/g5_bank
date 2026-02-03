@@ -7,9 +7,9 @@
             <field name="model">g5_bank.movement</field>
             <field name="arch" type="xml">
             <tree string="movement">
+                <field name="description"/>
                 <field name="timestamp"/>
                 <field name="amount"/>
-                <field name="description"/>
                 <field name="TimesStamp"/>
             </tree>
             </field>
