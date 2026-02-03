@@ -2,7 +2,23 @@
 
 <odoo>
     <data>
-        <!--
+        <record model="ir.ui.view" id="movements_tree_view">
+            <field name="name">movements.tree</field>
+            <field name="model">g5_bank.movement</field>
+            <field name="arch" type="xml">
+                <tree string="movement">
+                    <field name="timestamp"/>
+                    <field name="amount"/>
+                    <field name="description"/>
+                    <field name="balanctimesStampe"/>
+                    
+                    
+                    <field name="your_filed" attrs= "{'readonly': [('id', '!=' , False)]}"/>
+                    
+                    
+                </tree>
+            </field>
+        </record>
         <record model="ir.ui.view" id="movements_form_view">
             <field name="name">movements.form</field>
             <field name="model">g5_bank.movement</field>
@@ -10,16 +26,16 @@
                 <form string="Session Form">
                     <sheet>
                         <group>
-                            <field name="timesStamp"/>
+                            <field name="timestamp"/>
                             <field name="amount"/>
                             <field name="description"/>
                             <field name="balance"/>
                         </group>
                     </sheet>
                 </form>
-                </field>
-            </record>
-        -->   
+            </field>
+        </record>
+          
         <record model="ir.actions.act_window" id="g5_movement_action">
             <field name="name">Movements</field>    
             <field name="res_model">g5_bank.movement</field>
