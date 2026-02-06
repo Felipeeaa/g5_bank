@@ -25,7 +25,7 @@
                         <field name="balance" attrs="{'readonly': [('id', '!=', False)]}"/>
                     </group>
                     <group colspan="2" col="2">
-                        <field name="Timestamp" attrs="{'readonly': [('id', '!=', False)]}"/>
+                        <field name="Timestamp" attrs="{'readonly': [('id', '!=', True)]}"/>
                         <field name="Amount"/>
                     </group>
                     <notebook>
@@ -48,6 +48,9 @@
                     <filter string="Deposit Movements" name="deposit_movements" domain="[('description', '=', 'DEPOSIT')]"/>
                     <filter string="Payment Movements" name="payment_movements" domain="[('description', '=', 'PAYMENT')]"/>
                     <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Account Type" name="group_by_type" context="{'group_by': 'typeAccount'}"/>
+                    </group>
                     <filter string="Negative Balance" name="negative_balance" domain="[('balance', '&lt;', 0)]"/>
 
                     <group expand="0" string="Group By">

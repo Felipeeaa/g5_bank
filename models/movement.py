@@ -9,9 +9,7 @@ class Movement(models.Model):
     
 
     timesStamp = fields.Datetime(string='Date',readonly=True, default=fields.Datetime.now)
-    
     amount = fields.Float(string='Amount', default=0.0,required=True)
-    
     balance = fields.Float(string='Balance', 
         compute='_compute_balance', default=0.0, readonly=True)
         
