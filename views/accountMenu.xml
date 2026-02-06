@@ -25,7 +25,6 @@
             <form>
                 <group colspan="4">
                     <group colspan="2" col="2">
-                        <field name="id" attrs="{'readonly': [('id', '!=', False)]}"/>
                         <field name="description"/>
                         <field name="balance" attrs="{'readonly': [('id', '!=', False)]}" readonly="1"/>
                     </group>
