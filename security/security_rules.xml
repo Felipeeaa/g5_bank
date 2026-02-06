@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="g5_admins" model="res.groups">
+            <field name="name">Bank application / Admins</field>
+        </record>
+        <record id="g5_customers" model="res.groups">
+            <field name="name">Bank application / Customers</field>
+        </record>
+    </data>
+</odoo>

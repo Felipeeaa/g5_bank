@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_g5_bank_customer,customer_g5_bank_all,model_res_users,g5_admins,1,1,1,1
+access_g5_bank_account,account_g5_bank_all,model_g5_bank_account,g5_customers,1,1,1,1
+access_g5_bank_movements,movements_g5_bank_all,model_g5_bank_movement,g5_customers,1,0,1,1

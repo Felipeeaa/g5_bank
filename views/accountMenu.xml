@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_g5_account_tree">
+            <field name="name">g5AccountTreeView</field>
+            <field name="model">g5_bank.account</field>
+            <field name="arch" type="xml">
+            <tree string="account">
+                <field name="description"/>
+                <field name="balance" readonly="1"/>
+                <field name="creditLine"/>
+                <field name="beginBalance"/>
+                <field name="beginBalanceTimestamp" readonly="1"/>
+                <field name="typeAccount"/>
+            </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_g5_account_form">
+            
+            <field name="name">g5AccountFormView</field>
+            <field name="model">g5_bank.account</field>
+            <field name="arch" type="xml">
+            <form>
+                <group colspan="4">
+                    <group colspan="2" col="2">
+                        <field name="description"/>
+                        <field name="balance" attrs="{'readonly': [('id', '!=', False)]}" readonly="1"/>
+                    </group>
+                    <group colspan="2" col="2">
+                        <field name="creditLine" 
+                                   attrs="{'invisible': [('typeAccount', '=', 'STANDARD')], 'required': [('typeAccount', '=', 'CREDIT')]}"/>
+                        <field name="beginBalance" attrs="{'readonly': [('id', '!=', False)]}"/>
+                        <field name="beginBalanceTimestamp" attrs="{'readonly': [('id', '!=', False)]}" readonly="1"/>
+                        <field name="typeAccount"/>
+                    </group>
+                    <notebook>
+                        <page string="Movements" name="detalle-movement">
+                             <field name="g5_movement_ids"/>
+                        </page>
+                        <page string="Customer" name="detalle-customer">
+                            <field name="g5_customer_ids"/>
+                        </page>
+                    </notebook>
+                </group>
+            </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_g5_account_search">
+            <field name="name">g5AccountSearchView</field>
+            <field name="model">g5_bank.account</field>
+            <field name="arch" type="xml">
+                <search string="Search Accounts">
+                    <field name="name" string="Account Name"/>
+                    <field name="description" string="Description"/>
+                    <field name="typeAccount"/>
+
+                    <filter string="Credit Accounts" name="credit_accounts" domain="[('typeAccount', '=', 'CREDIT')]"/>
+                    <filter string="Standard Accounts" name="standard_accounts" domain="[('typeAccount', '=', 'STANDARD')]"/>
+                    <separator/>
+                    <filter string="Negative Balance" name="negative_balance" domain="[('balance', '&lt;', 0)]"/>
+
+                    <group expand="0" string="Group By">
+                        <filter string="Account Type" name="group_by_type" context="{'group_by': 'typeAccount'}"/>
+                        <filter string="Opening Date" name="group_by_date" context="{'group_by': 'beginBalanceTimestamp'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="g5_accounts_action">
+            <field name="name">Accounts</field>    
+            <field name="res_model">g5_bank.account</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem id="bank_main_menu"
+                  name="Bank"/>
+        <menuitem id="main_myaccounts_menu"
+                      name="Accounts"
+                      parent="bank_main_menu"
+                      action ="g5_accounts_action"/>
+                           
+    </data>
+    
+</odoo>
