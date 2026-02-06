@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="rule_account_visibility_user" model="ir.rule">
-            <field name="name">Ver solo mis cuentas bancarias</field>
-            <field name="model_id" ref="model_g5_bank_account"/>
-            <field name="domain_force">[('g5_customer_ids', 'in', user.id)]</field>
-            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="True"/>
-            <field name="perm_create" eval="True"/>
-            <field name="perm_unlink" eval="False"/> </record>
-
-        <record id="rule_account_visibility_admin" model="ir.rule">
-            <field name="name">Admin ve todas las cuentas</field>
-            <field name="model_id" ref="model_g5_bank_account"/>
-            <field name="domain_force">[(1, '=', 1)]</field> <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+        <record id="g5_admins" model="res.groups">
+            <field name="name">Bank application / Admins</field>
+        </record>
+        <record id="g5_customers" model="res.groups">
+            <field name="name">Bank application / Customers</field>
         </record>
     </data>
 </odoo>

@@ -42,13 +42,8 @@
                     <page string="Accounts" name="detalle-cuentas">
                         <field name="g5_account_ids"/>
                     </page>
-                </notebook>
-                
-                
-            </group>
-            
-            
-            
+                </notebook>  
+            </group>   
         </field>
         </record>
         <record model="ir.actions.act_window" id="g5_customer_action">

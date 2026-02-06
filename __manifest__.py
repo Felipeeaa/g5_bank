@@ -29,12 +29,11 @@
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
         'security/security_rules.xml',
+        'security/ir.model.access.csv',
         'views/accountMenu.xml',
         'views/movementMenu.xml',
         'views/customerMenu.xml',
-        'views/reports.xml',
         
     ],
     # only loaded in demonstration mode
