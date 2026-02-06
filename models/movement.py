@@ -22,3 +22,5 @@ class Movement(models.Model):
     
     #Many2One    
     g5_account_id = fields.Many2one('g5_bank.account', string="Account")
+
+
