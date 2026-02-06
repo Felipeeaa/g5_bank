@@ -36,9 +36,13 @@ class Customer(models.Model):
                 
                 if not match:
                     raise ValidationError("El correo electrónico debe tener un formato válido (ejemplo: usuario@dominio.com).")
+                if len(record.login)>50:
+                    raise ValidationError("El correo electronico es muy largo")
                 
     @api.constrains('mobile')
     def _check_mobile_validation(self):
         for record in self:
             if not record.mobile.isdigit():
                 raise ValidationError("El numero de telefono debe contener unicamente numeros")
+            if len(record.mobile)>15:
+                raise ValidationError("El numero de telefono es muy largo")

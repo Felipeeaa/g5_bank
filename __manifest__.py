@@ -34,6 +34,7 @@
         'views/accountMenu.xml',
         'views/movementMenu.xml',
         'views/customerMenu.xml',
+
         
     ],
     # only loaded in demonstration mode
