@@ -8,9 +8,9 @@
             <field name="arch" type="xml">
             <tree string="movement">
                 <field name="description"/>
-                <field name="timestamp"/>
+                <field name="balance"/>
                 <field name="amount"/>
-                <field name="TimesStamp"/>
+                <field name="timesStamp"/>
             </tree>
             </field>
         </record>
@@ -25,14 +25,10 @@
                         <field name="balance" attrs="{'readonly': [('id', '!=', False)]}"/>
                     </group>
                     <group colspan="2" col="2">
-                        <field name="Timestamp" attrs="{'readonly': [('id', '!=', True)]}"/>
-                        <field name="Amount"/>
+                        <field name="timesStamp" attrs="{'readonly': [('id', '!=', False)]}"/>
+                        <field name="amount"/>
                     </group>
-                    <notebook>
-                        <page string="Movements" name="detalle-movement">
-                             <field name="g5_movement_ids"/>
-                        </page>
-                    </notebook>
+                   
                 </group>
             </form>
             </field>
@@ -47,14 +43,10 @@
                     <filter string="Deposit Movements" name="deposit_movements" domain="[('description', '=', 'DEPOSIT')]"/>
                     <filter string="Payment Movements" name="payment_movements" domain="[('description', '=', 'PAYMENT')]"/>
                     <group expand="0" string="Group By">
-                        <filter string="Account Type" name="group_by_type" context="{'group_by': 'typeAccount'}"/>
+                        <filter string="Account Type" name="group_by_type" context="{'group_by': 'description'}"/>
                     </group>
                     <filter string="Negative Balance" name="negative_balance" domain="[('balance', '&lt;', 0)]"/>
 
-                    <group expand="0" string="Group By">
-                        <filter string="Movement Type" name="group_by_type" context="{'group_by': 'description'}"/>
-                        <filter string="Date" name="group_by_date" context="{'group_by': 'timesStamp'}"/>
-                    </group>
                 </search>
             </field>
         </record>
