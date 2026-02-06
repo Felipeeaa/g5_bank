@@ -2,24 +2,63 @@
 
 <odoo>
     <data>
-        <!--
+        <record model="ir.ui.view" id="movements_tree_view">
+            <field name="name">movements.tree</field>
+            <field name="model">g5_bank.movement</field>
+            <field name="arch" type="xml">
+            <tree string="movement">
+                <field name="description"/>
+                <field name="timestamp"/>
+                <field name="amount"/>
+                <field name="TimesStamp"/>
+            </tree>
+            </field>
+        </record>
         <record model="ir.ui.view" id="movements_form_view">
             <field name="name">movements.form</field>
             <field name="model">g5_bank.movement</field>
             <field name="arch" type="xml">
-                <form string="Session Form">
-                    <sheet>
-                        <group>
-                            <field name="timesStamp"/>
-                            <field name="amount"/>
-                            <field name="description"/>
-                            <field name="balance"/>
-                        </group>
-                    </sheet>
-                </form>
-                </field>
-            </record>
-        -->   
+                <form>
+                <group colspan="4">
+                    <group colspan="2" col="2">
+                        <field name="description"/>
+                        <field name="balance" attrs="{'readonly': [('id', '!=', False)]}"/>
+                    </group>
+                    <group colspan="2" col="2">
+                        <field name="Timestamp" attrs="{'readonly': [('id', '!=', True)]}"/>
+                        <field name="Amount"/>
+                    </group>
+                    <notebook>
+                        <page string="Movements" name="detalle-movement">
+                             <field name="g5_movement_ids"/>
+                        </page>
+                    </notebook>
+                </group>
+            </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_g5_account_search">
+            <field name="name">movement.Shearch</field>
+            <field name="model">g5_bank.movement</field>
+            <field name="arch" type="xml">
+                <search string="Search Movements">
+                    <field name="description" string="Description"/>
+                    <filter string="Deposit Movements" name="deposit_movements" domain="[('description', '=', 'DEPOSIT')]"/>
+                    <filter string="Payment Movements" name="payment_movements" domain="[('description', '=', 'PAYMENT')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Account Type" name="group_by_type" context="{'group_by': 'typeAccount'}"/>
+                    </group>
+                    <filter string="Negative Balance" name="negative_balance" domain="[('balance', '&lt;', 0)]"/>
+
+                    <group expand="0" string="Group By">
+                        <filter string="Movement Type" name="group_by_type" context="{'group_by': 'description'}"/>
+                        <filter string="Date" name="group_by_date" context="{'group_by': 'timesStamp'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+          
         <record model="ir.actions.act_window" id="g5_movement_action">
             <field name="name">Movements</field>    
             <field name="res_model">g5_bank.movement</field>
@@ -30,6 +69,5 @@
                   parent="bank_main_menu"
                   action="g5_movement_action"/>
             
-        
     </data>
 </odoo>
