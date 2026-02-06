@@ -7,12 +7,11 @@
             <field name="model">g5_bank.account</field>
             <field name="arch" type="xml">
             <tree string="account">
-                <field name="id"/>
                 <field name="description"/>
-                <field name="balance"/>
+                <field name="balance" readonly="1"/>
                 <field name="creditLine"/>
                 <field name="beginBalance"/>
-                <field name="beginBalanceTimestamp"/>
+                <field name="beginBalanceTimestamp" readonly="1"/>
                 <field name="typeAccount"/>
             </tree>
             </field>
@@ -28,13 +27,13 @@
                     <group colspan="2" col="2">
                         <field name="id" attrs="{'readonly': [('id', '!=', False)]}"/>
                         <field name="description"/>
-                        <field name="balance" attrs="{'readonly': [('id', '!=', False)]}"/>
+                        <field name="balance" attrs="{'readonly': [('id', '!=', False)]}" readonly="1"/>
                     </group>
                     <group colspan="2" col="2">
                         <field name="creditLine" 
                                    attrs="{'invisible': [('typeAccount', '=', 'STANDARD')], 'required': [('typeAccount', '=', 'CREDIT')]}"/>
                         <field name="beginBalance" attrs="{'readonly': [('id', '!=', False)]}"/>
-                        <field name="beginBalanceTimestamp" attrs="{'readonly': [('id', '!=', False)]}"/>
+                        <field name="beginBalanceTimestamp" attrs="{'readonly': [('id', '!=', False)]}" readonly="1"/>
                         <field name="typeAccount"/>
                     </group>
                     <notebook>
