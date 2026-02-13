@@ -7,8 +7,10 @@ class Account(models.Model):
     _description = 'Account'
 
     currency_id = fields.Many2one('res.currency', default=lambda self: self.env.company.currency_id)
+	#FIXME Este campo pasa a tener como etiqueta "Descripción"
+	#FIXME Su propósito no será almacenar el ID porque ya existe el campo id heredado de models.Model
     name = fields.Char(string="Account ID") 
-    
+    #FIXME Eliminar este campo del modelo y de las vistas
     description = fields.Text(string="Description", required=True)
     
     balance = fields.Monetary(
@@ -17,7 +19,7 @@ class Account(models.Model):
         compute='_compute_balance', 
         store=True
     )
-    
+    #FIXME Valida que credit line no pueda ser negativo
     creditLine = fields.Monetary(string='Credit Line', currency_field='currency_id', default=0.0)
     beginBalance = fields.Monetary(string='Begin Balance', currency_field='currency_id', required=True)
     beginBalanceTimestamp = fields.Datetime(string='Opening Date', default=fields.Datetime.now)
@@ -28,6 +30,7 @@ class Account(models.Model):
     ], string='Account Type', required=True, default='STANDARD')
 
     # Relaciones
+	#FIXME Asocia la cuenta con el usuario que está creando la cuenta cuando esta última se crea.
     g5_customer_ids = fields.Many2many('res.users', string='Customers')
     g5_movement_ids = fields.One2many('g5_bank.movement', 'g5_account_id', string='Movements')
     movement_count = fields.Integer(compute='_compute_movement_count')
@@ -66,11 +69,11 @@ class Account(models.Model):
              raise ValidationError("You cannot modify the Balance directly; please add a movement instead.")
 
         return super(Account, self).write(vals)
-
-    _sql_constraints = [
-        ('name_unique', 'UNIQUE(name)', 'The account name must be unique.'),
-        ('credit_line_positive', 'CHECK(creditLine >= 0)', 'The credit line cannot be negative.'),
-    ]
+	#FIXME: Eliminar las SQL_CONSTRAINTS
+    #_sql_constraints = [
+    #    ('name_unique', 'UNIQUE(name)', 'The account name must be unique.'),
+    #    ('credit_line_positive', 'CHECK(creditLine >= 0)', 'The credit line cannot be negative.'),
+    #]
 
     @api.constrains('typeAccount', 'creditLine')
     def _check_credit_line_consistency(self):
