@@ -9,6 +9,8 @@ class Customer(models.Model):
     _inherit = 'res.users'
 
     g5_account_ids = fields.Many2many("g5_bank.account", string="Account")
+	#TODO: Verificar que cuando se crean cuentas para el usuario mediante la pestaña correspondiente
+	# de la vista de formulario de usuarios, esta se relaciona correctamente con el usuario y viceversa.
 
     # --- Validación del código postal (ZIP) ---
     @api.constrains('zip')
