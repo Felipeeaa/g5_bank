@@ -45,7 +45,7 @@
                     <group expand="0" string="Group By">
                         <filter string="Account Type" name="group_by_type" context="{'group_by': 'description'}"/>
                     </group>
-                    <filter string="Negative Balance" name="negative_balance" domain="[('balance', '&lt;', 0)]"/>
+
 
                 </search>
             </field>
