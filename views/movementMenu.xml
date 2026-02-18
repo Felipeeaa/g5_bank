@@ -7,10 +7,11 @@
             <field name="model">g5_bank.movement</field>
             <field name="arch" type="xml">
             <tree string="movement">
-                <field name="description"/>
-                <field name="balance"/>
-                <field name="amount"/>
                 <field name="timesStamp"/>
+                <field name="description"/>
+                <field name="amount"/>
+                <field name="balance"/>
+                
             </tree>
             </field>
         </record>
@@ -19,16 +20,14 @@
             <field name="model">g5_bank.movement</field>
             <field name="arch" type="xml">
                 <form>
-                <group colspan="4">
+                <group>
                     <group colspan="2" col="2">
+                        <field name="timesStamp" attrs="{'readonly': [('id', '!=', True)]}"/>
                         <field name="description"/>
-                        <field name="balance" attrs="{'readonly': [('id', '!=', False)]}"/>
-                    </group>
-                    <group colspan="2" col="2">
-                        <field name="timesStamp" attrs="{'readonly': [('id', '!=', False)]}"/>
                         <field name="amount"/>
+                        <field name="balance" attrs="{'readonly': [('id', '!=', True)]}"/>
+                        
                     </group>
-                   
                 </group>
             </form>
             </field>
